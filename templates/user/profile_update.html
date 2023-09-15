@@ -1,0 +1,41 @@
+{% extends 'partials/base.html' %}
+{% block title %} Profile Update {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!--Table-->
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    Profile Update Page
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span class="h4"> Profile Information</span>
+                            <hr>
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ user_form }}
+                                {{ profile_form }}
+                            <input class="btn btn-info" type="submit" value="Update"> 
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--End Table-->
+{% endblock %}

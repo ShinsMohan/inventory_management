@@ -1,0 +1,39 @@
+{% extends 'partials/base.html' %}
+
+
+
+{% block content %}
+
+{% include 'partials/topnav.html' %}
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white">
+                <thead class="bg-info">
+                    <tr class="text-white">
+                        <th scope="col">Product</th>
+                        <th scope="col">Orders by</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for orders in orders %}
+                    <tr>
+                        <td>{{ orders.product }}</td>
+                        <td>{{ orders.staff }}</td>
+                        <td>{{ orders.order_quantity }}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

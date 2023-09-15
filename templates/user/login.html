@@ -1,0 +1,29 @@
+{% extends 'partials/base.html' %}
+{% block title %} Login Page {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row my-4">
+    <div class="col-md-2 offset-md-4">
+        {% for message in messages %}
+            {% if message %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endif  %}
+            {% endfor %}
+        <div class="border p-3 bg-white">
+            <h4>Login Page</h4>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input class="btn btn-success" type="submit" value="Login">
+                <a class="mx-4" href="{% url 'password_reset' %}">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

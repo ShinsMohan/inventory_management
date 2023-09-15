@@ -1,0 +1,56 @@
+{% extends 'partials/base.html' %}
+{% block title %}Products Page{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'partials/topnav.html' %}
+
+            
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+            {% for message in messages %}
+            {% if message %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endif  %}
+            {% endfor %}
+            <div class="border bg-white p-3">
+                <h4>Add Products</h4>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input class="btn btn-success btn-block" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table bg-white">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Activity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for items in items %}
+                <tr>
+                    <td>{{ items.name }}</td>
+                    <td>{{ items.quantity }}</td>
+                    <td>{{ items.category }}</td>
+                    <td>
+                        
+                        <a class="btn btn-success btn-sm" href="{% url 'dashboard-product-update' items.id %}">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'dashboard-product-delete' items.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
